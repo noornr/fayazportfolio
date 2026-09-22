@@ -137,42 +137,80 @@ export const HeroSection: React.FC = () => {
         "
       >
 
-        <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="auto"
-  className="
-    absolute
-    left-1/2
-    top-1/2
-    -translate-x-1/2
-    -translate-y-1/2
+        {/* ================= 2. FIXED HERO VIDEO LAYER ================= */}
+<div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black">
 
-    w-full
-    h-full
-    object-cover
-    object-center
-    scale-100
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    className="
+      absolute
+      inset-0
+      w-full
+      h-auto
+      max-h-full
+      object-contain
+      object-center
 
-    landscape:left-auto
-    landscape:right-0
-    landscape:top-0
-    landscape:translate-x-0
-    landscape:translate-y-0
-    landscape:w-auto
-    landscape:h-full
-    landscape:scale-100
-    landscape:object-contain
-    landscape:object-right
-  "
->
-  <source
-    src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
-    type="video/mp4"
+      landscape:h-full
+      landscape:w-auto
+      landscape:max-w-none
+      landscape:object-right
+    "
+  >
+    <source
+      src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
+      type="video/mp4"
+    />
+  </video>
+
+  {/* Left-side soft blend */}
+  <div
+    className="
+      absolute
+      inset-y-0
+      left-0
+      w-1/2
+      bg-gradient-to-r
+      from-black
+      via-black/75
+      to-transparent
+      pointer-events-none
+    "
   />
-</video>
+
+  {/* Watermark */}
+  <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-12 pointer-events-none flex items-center justify-center z-10">
+    <div className="relative flex items-center justify-center">
+
+      <div className="absolute w-36 h-36 bg-black/85 rounded-full blur-xl" />
+
+      <motion.div
+        animate={{
+          y: [-3, 3, -3],
+          scale: [1, 1.03, 1],
+        }}
+        transition={{
+          duration: 4.5,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        }}
+        className="relative flex items-center justify-center"
+      >
+        <img
+          src={watermarkImg}
+          alt="Insignia"
+          className="w-28 h-28 lg:w-32 lg:h-32 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.25)]"
+        />
+      </motion.div>
+
+    </div>
+  </div>
+
+</div>
         {/* =======================================================
             LEFT DARK BLEND
         ======================================================= */}
