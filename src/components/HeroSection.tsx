@@ -15,7 +15,11 @@ const containerVariants: Variants = {
 };
 
 const fadeUpVariants: Variants = {
-  hidden: { opacity: 0, y: 18, filter: 'blur(6px)' },
+  hidden: {
+    opacity: 0,
+    y: 18,
+    filter: 'blur(6px)',
+  },
   visible: {
     opacity: 1,
     y: 0,
@@ -36,7 +40,11 @@ const navItems = [
 ];
 
 export const HeroSection: React.FC = () => {
-  const [cursorPos, setCursorPos] = useState({ x: -100, y: -100 });
+  const [cursorPos, setCursorPos] = useState({
+    x: -100,
+    y: -100,
+  });
+
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -55,14 +63,40 @@ export const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section className="relative w-screen h-screen overflow-hidden bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black cursor-none">
+    <section
+      className="
+        relative
+        w-screen
+        h-screen
+        overflow-hidden
+        bg-black
+        text-[#E8DFD8]
+        font-sans
+        selection:bg-[#cbb59d]
+        selection:text-black
+        cursor-none
+      "
+    >
 
       {/* =========================================================
           1. MINIMAL CUSTOM CURSOR
       ========================================================= */}
       {cursorPos.x >= 0 && (
         <motion.div
-          className="fixed top-0 left-0 pointer-events-none z-50 rounded-full border border-[#D4AF37]/40 flex items-center justify-center backdrop-blur-[1px]"
+          className="
+            fixed
+            top-0
+            left-0
+            pointer-events-none
+            z-50
+            rounded-full
+            border
+            border-[#D4AF37]/40
+            flex
+            items-center
+            justify-center
+            backdrop-blur-[1px]
+          "
           animate={{
             x: cursorPos.x - (isHovered ? 24 : 5),
             y: cursorPos.y - (isHovered ? 24 : 5),
@@ -84,12 +118,29 @@ export const HeroSection: React.FC = () => {
       {/* =========================================================
           2. FIXED HERO VIDEO LAYER
           
-          hero.mp4 = portrait 720x1280
-
-          The video keeps its original aspect ratio.
-          It is NOT cropped or zoomed.
+          IMPORTANT:
+          max-w-full prevents the video from becoming wider
+          than the screen in portrait mode.
+          
+          Landscape:
+          - Full-height
+          - Right aligned
+          
+          Portrait:
+          - Width constrained to screen
+          - No unwanted horizontal cropping
+          - Video keeps original aspect ratio
       ========================================================= */}
-      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-black">
+      <div
+        className="
+          fixed
+          inset-0
+          z-0
+          overflow-hidden
+          pointer-events-none
+          bg-black
+        "
+      >
 
         <video
           autoPlay
@@ -99,11 +150,12 @@ export const HeroSection: React.FC = () => {
           preload="auto"
           className="
             absolute
-            top-0
             right-0
+            top-1/2
+            -translate-y-1/2
             h-full
             w-auto
-            max-w-none
+            max-w-full
             object-contain
             object-right
           "
@@ -134,11 +186,32 @@ export const HeroSection: React.FC = () => {
         {/* =====================================================
             3. ANIMATED WATERMARK EMBLEM
         ===================================================== */}
-        <div className="absolute bottom-6 right-6 lg:bottom-10 lg:right-12 pointer-events-none flex items-center justify-center z-10">
-
+        <div
+          className="
+            absolute
+            bottom-6
+            right-6
+            lg:bottom-10
+            lg:right-12
+            pointer-events-none
+            flex
+            items-center
+            justify-center
+            z-10
+          "
+        >
           <div className="relative flex items-center justify-center">
 
-            <div className="absolute w-36 h-36 bg-black/85 rounded-full blur-xl" />
+            <div
+              className="
+                absolute
+                w-36
+                h-36
+                bg-black/85
+                rounded-full
+                blur-xl
+              "
+            />
 
             <motion.div
               animate={{
@@ -150,7 +223,12 @@ export const HeroSection: React.FC = () => {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="relative flex items-center justify-center"
+              className="
+                relative
+                flex
+                items-center
+                justify-center
+              "
             >
               <img
                 src={watermarkImg}
@@ -174,12 +252,37 @@ export const HeroSection: React.FC = () => {
       {/* =========================================================
           4. CONTENT LAYER
       ========================================================= */}
-      <div className="relative z-10 flex flex-col justify-between h-full w-full px-6 sm:px-12 lg:px-16 pt-6 pb-8 pointer-events-none">
+      <div
+        className="
+          relative
+          z-10
+          flex
+          flex-col
+          justify-between
+          h-full
+          w-full
+          px-6
+          sm:px-12
+          lg:px-16
+          pt-6
+          pb-8
+          pointer-events-none
+        "
+      >
 
         {/* =====================================================
             NAVIGATION BAR
         ===================================================== */}
-        <header className="relative flex items-center justify-between w-full pointer-events-auto">
+        <header
+          className="
+            relative
+            flex
+            items-center
+            justify-between
+            w-full
+            pointer-events-auto
+          "
+        >
 
           {/* Logo */}
           <a
@@ -203,7 +306,7 @@ export const HeroSection: React.FC = () => {
             LOHITHA.
           </a>
 
-          {/* Navigation Links */}
+          {/* Navigation */}
           <nav
             className="
               hidden
@@ -258,7 +361,7 @@ export const HeroSection: React.FC = () => {
             ))}
           </nav>
 
-          {/* Right Action */}
+          {/* Let's Talk */}
           <a
             href="#contact"
             onMouseEnter={() => setIsHovered(true)}
@@ -290,7 +393,16 @@ export const HeroSection: React.FC = () => {
           >
             <span>LET&apos;S TALK</span>
 
-            <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs">
+            <span
+              className="
+                transform
+                transition-transform
+                duration-300
+                group-hover:translate-x-0.5
+                group-hover:-translate-y-0.5
+                text-xs
+              "
+            >
               ↗
             </span>
           </a>
@@ -300,10 +412,23 @@ export const HeroSection: React.FC = () => {
         {/* =====================================================
             MAIN HERO ROW
         ===================================================== */}
-        <div className="relative flex flex-col md:flex-row items-center justify-between w-full pt-4 pb-2 my-auto">
+        <div
+          className="
+            relative
+            flex
+            flex-col
+            md:flex-row
+            items-center
+            justify-between
+            w-full
+            pt-4
+            pb-2
+            my-auto
+          "
+        >
 
           {/* ===================================================
-              LEFT: HEADLINE + DESCRIPTION + BUTTONS
+              LEFT CONTENT
           =================================================== */}
           <motion.div
             variants={containerVariants}
@@ -320,10 +445,16 @@ export const HeroSection: React.FC = () => {
             "
           >
 
-            {/* Main Headline */}
+            {/* =================================================
+                MAIN HEADLINE
+            ================================================= */}
             <motion.div
               variants={fadeUpVariants}
-              className="relative mb-3.5 select-none"
+              className="
+                relative
+                mb-3.5
+                select-none
+              "
             >
               <h1
                 className="
@@ -341,7 +472,6 @@ export const HeroSection: React.FC = () => {
                 }}
               >
 
-                {/* I BUILD */}
                 <span
                   className="
                     block
@@ -357,7 +487,6 @@ export const HeroSection: React.FC = () => {
                   I BUILD
                 </span>
 
-                {/* DIGITAL */}
                 <span
                   className="
                     block
@@ -373,7 +502,6 @@ export const HeroSection: React.FC = () => {
                   DIGITAL
                 </span>
 
-                {/* EXPERIENCES */}
                 <span
                   className="
                     block
@@ -414,9 +542,13 @@ export const HeroSection: React.FC = () => {
                 }}
               >
                 FULL STACK DEVELOPER
-                <span className="text-[#8C6D4F] mx-1">•</span>
+                <span className="text-[#8C6D4F] mx-1">
+                  •
+                </span>
                 UI/UX DESIGNER
-                <span className="text-[#8C6D4F] mx-1">•</span>
+                <span className="text-[#8C6D4F] mx-1">
+                  •
+                </span>
                 DATA SCIENCE
               </p>
             </motion.div>
@@ -454,18 +586,26 @@ export const HeroSection: React.FC = () => {
             ================================================= */}
             <motion.div
               variants={fadeUpVariants}
-              className="flex flex-row items-center gap-4 sm:gap-6"
+              className="
+                flex
+                flex-row
+                items-center
+                gap-4
+                sm:gap-6
+              "
               style={{
                 fontFamily: "'Montserrat', sans-serif",
               }}
             >
 
-              {/* Explore My Work */}
+              {/* Explore */}
               <motion.a
                 href="#work"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{
+                  scale: 1.02,
+                }}
                 className="
                   relative
                   inline-flex
@@ -489,6 +629,7 @@ export const HeroSection: React.FC = () => {
                   shadow-[0_0_25px_rgba(212,175,55,0.18)]
                 "
               >
+
                 <div
                   className="
                     absolute
@@ -504,21 +645,35 @@ export const HeroSection: React.FC = () => {
                   "
                 />
 
-                <span>EXPLORE MY WORK</span>
+                <span>
+                  EXPLORE MY WORK
+                </span>
 
-                <span className="transform transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-xs">
+                <span
+                  className="
+                    transform
+                    transition-transform
+                    duration-300
+                    group-hover:translate-x-0.5
+                    group-hover:-translate-y-0.5
+                    text-xs
+                  "
+                >
                   ↗
                 </span>
+
               </motion.a>
 
-              {/* Download Resume */}
+              {/* Resume */}
               <motion.a
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                whileHover={{ scale: 1.02 }}
+                whileHover={{
+                  scale: 1.02,
+                }}
                 className="
                   relative
                   inline-flex
@@ -540,11 +695,22 @@ export const HeroSection: React.FC = () => {
                   duration-300
                 "
               >
-                <span>DOWNLOAD RESUME</span>
+                <span>
+                  DOWNLOAD RESUME
+                </span>
 
-                <span className="transform transition-transform duration-300 group-hover:translate-y-0.5 text-xs">
+                <span
+                  className="
+                    transform
+                    transition-transform
+                    duration-300
+                    group-hover:translate-y-0.5
+                    text-xs
+                  "
+                >
                   ↓
                 </span>
+
               </motion.a>
 
             </motion.div>
@@ -552,7 +718,7 @@ export const HeroSection: React.FC = () => {
           </motion.div>
 
           {/* ===================================================
-              RIGHT: QUOTE + SIGNATURE
+              RIGHT QUOTE / SIGNATURE
           =================================================== */}
           <motion.div
             initial={{
@@ -582,12 +748,18 @@ export const HeroSection: React.FC = () => {
             "
           >
 
-            {/* Quote */}
-            <span className="text-xl text-[#C99E5D] leading-none font-serif mb-2">
+            <span
+              className="
+                text-xl
+                text-[#C99E5D]
+                leading-none
+                font-serif
+                mb-2
+              "
+            >
               “
             </span>
 
-            {/* Statement */}
             <div
               className="
                 text-[9.5px]
@@ -602,11 +774,15 @@ export const HeroSection: React.FC = () => {
                 fontFamily: "'Montserrat', sans-serif",
               }}
             >
-              <p>CODE IS MY CRAFT.</p>
-              <p>IMPACT IS MY GOAL.</p>
+              <p>
+                CODE IS MY CRAFT.
+              </p>
+
+              <p>
+                IMPACT IS MY GOAL.
+              </p>
             </div>
 
-            {/* Gold Line */}
             <div
               className="
                 w-28
@@ -620,7 +796,6 @@ export const HeroSection: React.FC = () => {
               "
             />
 
-            {/* Signature */}
             <div
               className="
                 text-[2.2rem]
@@ -630,7 +805,8 @@ export const HeroSection: React.FC = () => {
                 -ml-0.5
               "
               style={{
-                fontFamily: "'Herr Von Muellerhoff', 'Allura', cursive",
+                fontFamily:
+                  "'Herr Von Muellerhoff', 'Allura', cursive",
                 letterSpacing: '0.04em',
               }}
             >
