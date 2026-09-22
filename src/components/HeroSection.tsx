@@ -138,44 +138,41 @@ export const HeroSection: React.FC = () => {
       >
 
         <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="
-            absolute
-            left-1/2
-            top-1/2
-            -translate-x-1/2
-            -translate-y-1/2
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  className="
+    absolute
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
 
-            w-full
-            h-full
+    w-full
+    h-full
+    object-cover
+    object-center
+    scale-100
 
-            object-cover
-            object-center
-
-            scale-[2.8]
-
-            landscape:left-auto
-            landscape:right-0
-            landscape:top-0
-            landscape:translate-x-0
-            landscape:translate-y-0
-            landscape:w-auto
-            landscape:h-full
-            landscape:scale-100
-            landscape:object-contain
-            landscape:object-right
-          "
-        >
-          <source
-            src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
-            type="video/mp4"
-          />
-        </video>
-
+    landscape:left-auto
+    landscape:right-0
+    landscape:top-0
+    landscape:translate-x-0
+    landscape:translate-y-0
+    landscape:w-auto
+    landscape:h-full
+    landscape:scale-100
+    landscape:object-contain
+    landscape:object-right
+  "
+>
+  <source
+    src={`${import.meta.env.BASE_URL}videos/hero.mp4`}
+    type="video/mp4"
+  />
+</video>
         {/* =======================================================
             LEFT DARK BLEND
         ======================================================= */}
